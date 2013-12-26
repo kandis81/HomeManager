@@ -1,2 +1,7 @@
 archiv
 /.project
+*.~*
+*.obj
+*.res
+HomeManager.exe
+HomeManager.tds
