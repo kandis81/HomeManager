@@ -94,7 +94,6 @@ void TForm3::init(Ds::ChargeTypes cht, TDateTime ref)
 
    this->HM_QCharges->Active= false;
    this->HM_QCharges->ParamByName("begsp")->SetData(this->DefaultFrom.FormatString("yyyy-mm-dd").c_str());
-//   this->HM_QCharges->ParamByName("endsp")->SetData(this->DefaultTo.FormatString("yyyy-mm-dd").c_str());
    this->HM_QCharges->ParamByName("chtype")->SetData(Ds::ctNames[this->ChargeType].c_str());
    this->HM_QCharges->Active= true;
 
@@ -126,6 +125,10 @@ void TForm3::refresh()
 
 void __fastcall TForm3::Button2Click(TObject *Sender)
 {
+   // Bugfix: a melléütések végett ;)
+   if (this->DBEdit2->Text.IsEmpty())
+      return;
+
    this->HM_EChType->SetTextBuf(Ds::ctNames[this->ChargeType].c_str());
    this->HM_EIsInbound->SetTextBuf(this->ChargeType == Ds::ctPayment ? "1" : "0");
    this->HM_EInsSp->SetTextBuf(TDateTime::CurrentDateTime().FormatString("yyyy.mm.dd. hh:nn:ss").c_str());
@@ -152,6 +155,13 @@ void __fastcall TForm3::Button2Click(TObject *Sender)
    this->refresh();
 
    this->DBEdit2->SetFocus();
+
+   if (this->CheckBox1->Visible &&
+       this->CheckBox1->Checked)
+   {
+      this->CheckBox1->Checked= false;
+      this->DateTimePicker1->Enabled= false;
+   }
 }
 //---------------------------------------------------------------------------
 

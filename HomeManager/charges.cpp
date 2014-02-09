@@ -21,6 +21,14 @@ __fastcall TForm2::TForm2(TComponent* Owner)
 //   MonthCalendar1->Date= tmp;
    MonthCalendar1->Date= TDateTime::CurrentDateTime();
 
+   this->HM_CHDB->Connect();
+
+   this->HM_CHQInbound->Active= true;
+//   this->HM_CHDSInbound->A true;
+   this->HM_CHQBill->Active= true;
+   this->HM_CHQRegularBill->Active= true;
+   this->HM_CHQShoping->Active= true;
+   this->HM_CHQFuel->Active= true;
 
    refresh();
 }
@@ -30,31 +38,68 @@ void TForm2::refresh()
 {
    AnsiString begsp= Ds::getFirstDayOfMonth(this->MonthCalendar1->Date),
               endsp= Ds::getFirstDayOfNextMonth(this->MonthCalendar1->Date);
+   int difference= 0;
 
-   this->HM_CHQBill->Active= false;
-   this->HM_CHQBill->ParamByName("begsp")->SetData(begsp.c_str());
-//   this->HM_CHQBill->ParamByName("endsp")->SetData(endsp.c_str());
-   this->HM_CHQBill->Active= true;
+   refresh(this->HM_CHQBill, begsp);
+   refresh(this->HM_CHQRegularBill,  begsp);
+   refresh(this->HM_CHQShoping,  begsp);
+   refresh(this->HM_CHQFuel,  begsp);
+   refresh(this->HM_CHQInbound,  begsp);
 
-   this->HM_CHQRegularBill->Active= false;
-   this->HM_CHQRegularBill->ParamByName("begsp")->SetData(begsp.c_str());
-//   this->HM_CHQRegularBill->ParamByName("endsp")->SetData(endsp.c_str());
-   this->HM_CHQRegularBill->Active= true;
+   // Refresh Summary Objects
+   refresh(this->HM_CHQSUM_Bill,  begsp);
+   refresh(this->HM_CHQSUM_Shopping,  begsp);
+   refresh(this->HM_CHQSUM_RegularBill,  begsp);
+   refresh(this->HM_CHQSUM_Fuel,  begsp);
+   refresh(this->HM_CHQSUM_Inbound,  begsp);
+   refresh(this->HM_CHQSUM_Outbund,  begsp);
 
-   this->HM_CHQShoping->Active= false;
-   this->HM_CHQShoping->ParamByName("begsp")->SetData(begsp.c_str());
-//   this->HM_CHQShoping->ParamByName("endsp")->SetData(endsp.c_str());
-   this->HM_CHQShoping->Active= true;
+   // Refresh and Recalc Difference
+   refreshDiff(begsp);
 
-   this->HM_CHQFuel->Active= false;
-   this->HM_CHQFuel->ParamByName("begsp")->SetData(begsp.c_str());
-//   this->HM_CHQFuel->ParamByName("endsp")->SetData(endsp.c_str());
-   this->HM_CHQFuel->Active= true;
+   if (!this->DIFF_PrevMonth->Field->AsString.IsEmpty())
+      difference+= this->DIFF_PrevMonth->Field->AsInteger;
 
-   this->HM_CHQInbound->Active= false;
-   this->HM_CHQInbound->ParamByName("begsp")->SetData(begsp.c_str());
-//   this->HM_CHQInbound->ParamByName("endsp")->SetData(endsp.c_str());
-   this->HM_CHQInbound->Active= true;
+   if (this->SUM_Inbound->Field->AsInteger > 0)
+      difference+= this->SUM_Inbound->Field->AsInteger;
+
+   if (this->SUM_Outbound->Field->AsInteger > 0)
+      difference-= this->SUM_Outbound->Field->AsInteger;
+
+   if (this->Diff_ChId->Field->AsString.IsEmpty() ||
+       this->DIFF_ActMonth->Field->AsInteger != difference)
+   {
+      enum FieldIndexes
+      {
+         fiId = 0,
+         fiInsSp,
+         fiBegSp,
+         fiEndSp,
+         fiIsInbound,
+         fiChType,
+         fiValue,
+         fiDescription
+      };
+
+      if (this->Diff_ChId->Field->AsString.IsEmpty())
+      {
+         this->HM_CHTDiff_ActMonth->Insert();
+
+         this->Diff_Grid->Fields[fiInsSp]->AsString= TDateTime::CurrentDateTime().FormatString("yyyy.mm.dd. hh:nn:ss");
+         this->Diff_Grid->Fields[fiBegSp]->AsDateTime= Ds::getDate_FirstDayOfMonth(this->MonthCalendar1->Date);
+         this->Diff_Grid->Fields[fiEndSp]->AsDateTime= Ds::getDate_LastDayOfMonth(this->MonthCalendar1->Date);
+         this->Diff_Grid->Fields[fiIsInbound]->AsInteger= -1;
+         this->Diff_Grid->Fields[fiChType]->AsString= Ds::ctNames[Ds::ctDiff];
+         this->Diff_Grid->Fields[fiDescription]->AsString= "Calculated difference";
+      }
+      else if (this->Diff_Grid->Fields[fiId]->AsInteger == this->Diff_ChId->Field->AsInteger)
+         this->HM_CHTDiff_ActMonth->Edit();
+
+      this->Diff_Grid->Fields[fiValue]->AsInteger= difference;
+      this->HM_CHTDiff_ActMonth->Post();
+
+      refreshDiff(begsp);
+   }
 }
 
 void __fastcall TForm2::MonthCalendar1Click(TObject *Sender)
@@ -115,3 +160,20 @@ void __fastcall TForm2::FormActivate(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+void TForm2::refresh(TmySQLQuery* q, AnsiString& begsp)
+{
+   q->Active= false;
+   q->ParamByName("begsp")->SetData(begsp.c_str());
+   q->Active= true;
+}
+
+void TForm2::refreshDiff(AnsiString& begsp)
+{
+   AnsiString prevMonth= Ds::getFirstDayOfPrevMonth(this->MonthCalendar1->Date);
+
+   this->HM_CHTDiff_ActMonth->Active= false;
+   refresh(this->HM_CHQDiff_PrevMonth, prevMonth);
+   refresh(this->HM_CHQDiff_ActMonth, begsp);
+   this->HM_CHTDiff_ActMonth->Active= true;
+}

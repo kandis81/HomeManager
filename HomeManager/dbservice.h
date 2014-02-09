@@ -11,6 +11,10 @@ class DbService
       static int isMemeber(const AnsiString block[], const AnsiString str);
       static AnsiString getFirstDayOfMonth(TDateTime date);
       static AnsiString getFirstDayOfNextMonth(TDateTime date);
+      static AnsiString getFirstDayOfPrevMonth(TDateTime date);
+
+      static TDateTime getDate_LastDayOfMonth(TDateTime date);
+      static TDateTime getDate_FirstDayOfMonth(TDateTime date);
 
       enum ChargeTypes
       {
@@ -20,7 +24,7 @@ class DbService
          ctRegBill,
          ctShop,
          ctFuel,
-         ctPrevMonth,
+         ctDiff,
          ctPayment,
 
          ctCount

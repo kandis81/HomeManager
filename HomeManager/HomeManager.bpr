@@ -4,7 +4,8 @@
   <MACROS>
     <VERSION value="BCB.05.03"/>
     <PROJECT value="HomeManager.exe"/>
-    <OBJFILES value="HomeManager.obj mainform.obj charges.obj chadd.obj dbservice.obj"/>
+    <OBJFILES value="HomeManager.obj mainform.obj charges.obj chadd.obj dbservice.obj 
+      charges_service.obj list.obj"/>
     <RESFILES value="HomeManager.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>

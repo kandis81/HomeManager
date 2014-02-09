@@ -1,8 +1,8 @@
 object Form2: TForm2
-  Left = 174
-  Top = 153
-  Width = 775
-  Height = 600
+  Left = 102
+  Top = 357
+  Width = 776
+  Height = 614
   Caption = 'Bevétel / Kiadás nyilvántartás'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -24,7 +24,7 @@ object Form2: TForm2
   end
   object Label2: TLabel
     Left = 10
-    Top = 248
+    Top = 256
     Width = 114
     Height = 13
     Caption = 'Rendszeres levonások: '
@@ -38,7 +38,7 @@ object Form2: TForm2
   end
   object Label4: TLabel
     Left = 304
-    Top = 248
+    Top = 256
     Width = 53
     Height = 13
     Caption = 'Tankolás : '
@@ -46,48 +46,151 @@ object Form2: TForm2
   object Label5: TLabel
     Left = 584
     Top = 192
-    Width = 165
+    Width = 99
     Height = 13
-    Caption = 'Elõzõ hónap hiány / megtakarítás :'
+    Caption = 'Hiány / megtakarítás'
   end
   object Label6: TLabel
     Left = 584
-    Top = 240
-    Width = 78
+    Top = 248
+    Width = 42
     Height = 13
-    Caption = 'Összes bevétel :'
+    Caption = 'Bevétel :'
   end
   object Label7: TLabel
-    Left = 584
-    Top = 288
-    Width = 74
+    Left = 721
+    Top = 248
+    Width = 38
     Height = 13
-    Caption = 'Összes kiadás :'
+    Caption = 'Kiadás :'
   end
-  object DBText1: TDBText
+  object DIFF_PrevMonth: TDBText
     Left = 584
-    Top = 216
+    Top = 224
     Width = 65
     Height = 17
+    DataField = 'value'
+    DataSource = DSDiff_PrevMonth
   end
-  object DBText2: TDBText
+  object Label9: TLabel
+    Left = 10
+    Top = 424
+    Width = 54
+    Height = 13
+    Caption = 'Bevételek: '
+  end
+  object Label8: TLabel
+    Left = 10
+    Top = 238
+    Width = 52
+    Height = 13
+    Caption = 'Összesen: '
+  end
+  object SUM_Bill: TDBText
+    Left = 194
+    Top = 236
+    Width = 65
+    Height = 17
+    Alignment = taRightJustify
+    DataField = 'summary'
+    DataSource = DSSUM_Bill
+  end
+  object Label10: TLabel
+    Left = 306
+    Top = 238
+    Width = 52
+    Height = 13
+    Caption = 'Összesen: '
+  end
+  object SUM_Shopping: TDBText
+    Left = 488
+    Top = 236
+    Width = 65
+    Height = 17
+    Alignment = taRightJustify
+    DataField = 'summary'
+    DataSource = DSSUM_Shopping
+  end
+  object Label11: TLabel
+    Left = 10
+    Top = 406
+    Width = 52
+    Height = 13
+    Caption = 'Összesen: '
+  end
+  object SUM_RegularBill: TDBText
+    Left = 194
+    Top = 404
+    Width = 65
+    Height = 17
+    Alignment = taRightJustify
+    DataField = 'summary'
+    DataSource = DSSUM_RegularBill
+  end
+  object Label12: TLabel
+    Left = 306
+    Top = 406
+    Width = 52
+    Height = 13
+    Caption = 'Összesen: '
+  end
+  object SUM_Fuel: TDBText
+    Left = 488
+    Top = 404
+    Width = 65
+    Height = 17
+    Alignment = taRightJustify
+    DataField = 'summary'
+    DataSource = DSSUM_Fuel
+  end
+  object SUM_Inbound: TDBText
     Left = 584
     Top = 264
     Width = 65
     Height = 17
+    DataField = 'summary'
+    DataSource = DSSUM_Inbound
   end
-  object DBText3: TDBText
-    Left = 584
-    Top = 312
+  object DIFF_ActMonth: TDBText
+    Left = 694
+    Top = 224
     Width = 65
     Height = 17
+    Alignment = taRightJustify
+    DataField = 'value'
+    DataSource = DSDiff_ActMonth
   end
-  object Label9: TLabel
-    Left = 10
-    Top = 408
-    Width = 54
+  object Label13: TLabel
+    Left = 584
+    Top = 208
+    Width = 65
     Height = 13
-    Caption = 'Bevételek: '
+    Caption = 'Elõzõ hónap: '
+  end
+  object Label14: TLabel
+    Left = 686
+    Top = 208
+    Width = 73
+    Height = 13
+    Caption = 'Aktuális hónap:'
+  end
+  object SUM_Outbound: TDBText
+    Left = 694
+    Top = 264
+    Width = 65
+    Height = 17
+    Alignment = taRightJustify
+    DataField = 'summary'
+    DataSource = DSSUM_Outbund
+  end
+  object Diff_ChId: TDBText
+    Left = 888
+    Top = 16
+    Width = 65
+    Height = 17
+    DataField = 'chid'
+    DataSource = DSDiff_ActMonth
+    Visible = False
   end
   object MonthCalendar1: TMonthCalendar
     Left = 576
@@ -127,7 +230,7 @@ object Form2: TForm2
   end
   object Button1: TButton
     Left = 144
-    Top = 248
+    Top = 256
     Width = 115
     Height = 25
     Caption = 'Hozzáad / Eltávolít'
@@ -136,7 +239,7 @@ object Form2: TForm2
   end
   object DBGrid2: TDBGrid
     Left = 10
-    Top = 280
+    Top = 288
     Width = 249
     Height = 113
     DataSource = DSRegularBill
@@ -190,7 +293,7 @@ object Form2: TForm2
   end
   object DBGrid4: TDBGrid
     Left = 304
-    Top = 280
+    Top = 288
     Width = 249
     Height = 113
     DataSource = DSFuel
@@ -217,7 +320,7 @@ object Form2: TForm2
   end
   object Button5: TButton
     Left = 684
-    Top = 535
+    Top = 551
     Width = 75
     Height = 25
     Caption = 'Bezárás'
@@ -235,7 +338,7 @@ object Form2: TForm2
   end
   object Button3: TButton
     Left = 440
-    Top = 248
+    Top = 256
     Width = 115
     Height = 25
     Caption = 'Hozzáad / Eltávolít'
@@ -253,7 +356,7 @@ object Form2: TForm2
   end
   object Button6: TButton
     Left = 438
-    Top = 408
+    Top = 424
     Width = 115
     Height = 25
     Caption = 'Hozzáad / Eltávolít'
@@ -262,7 +365,7 @@ object Form2: TForm2
   end
   object DBGrid5: TDBGrid
     Left = 10
-    Top = 440
+    Top = 456
     Width = 543
     Height = 120
     DataSource = HM_CHDSInbound
@@ -299,25 +402,39 @@ object Form2: TForm2
         Visible = True
       end>
   end
+  object Diff_Grid: TDBGrid
+    Left = 784
+    Top = 80
+    Width = 320
+    Height = 120
+    DataSource = DSDiff_ActMonthE
+    TabOrder = 12
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = []
+    Visible = False
+  end
   object DSRegularBill: TDataSource
     DataSet = HM_CHQRegularBill
-    Left = 264
-    Top = 312
+    Left = 784
+    Top = 448
   end
   object DSFuel: TDataSource
     DataSet = HM_CHQFuel
-    Left = 264
-    Top = 384
+    Left = 896
+    Top = 448
   end
   object DSBill: TDataSource
     DataSet = HM_CHQBill
-    Left = 264
-    Top = 80
+    Left = 784
+    Top = 376
   end
   object DSShopping: TDataSource
     DataSet = HM_CHQShoping
-    Left = 264
-    Top = 152
+    Left = 896
+    Top = 376
   end
   object HM_CHDB: TmySQLDatabase
     Connected = True
@@ -334,8 +451,8 @@ object Form2: TForm2
       'PWD=kukacka'
       'DatabaseName=home_manager')
     DatasetOptions = []
-    Left = 568
-    Top = 528
+    Left = 560
+    Top = 544
   end
   object HM_CHQInbound: TmySQLQuery
     AutoRefresh = True
@@ -345,9 +462,9 @@ object Form2: TForm2
       'from    charges '
       'where  begsp <= :begsp AND'
       '           (endsp is NULL OR endsp >=  :begsp)  AND'
-      '           isinbound;')
+      '           isinbound > 0;')
     Left = 96
-    Top = 408
+    Top = 424
     ParamData = <
       item
         DataType = ftString
@@ -359,7 +476,7 @@ object Form2: TForm2
   object HM_CHDSInbound: TDataSource
     DataSet = HM_CHQInbound
     Left = 128
-    Top = 408
+    Top = 424
   end
   object HM_CHQBill: TmySQLQuery
     AutoRefresh = True
@@ -370,8 +487,8 @@ object Form2: TForm2
       'where  begsp <= :begsp AND'
       '           (endsp is NULL OR endsp >=  :begsp) AND'
       '          chtype = '#39'BILL'#39';')
-    Left = 264
-    Top = 48
+    Left = 784
+    Top = 344
     ParamData = <
       item
         DataType = ftString
@@ -389,8 +506,8 @@ object Form2: TForm2
       'where  begsp <= :begsp AND'
       '          (endsp is NULL OR endsp >=  :begsp)  AND'
       '          chtype = '#39'REGBILL'#39';')
-    Left = 264
-    Top = 280
+    Left = 784
+    Top = 416
     ParamData = <
       item
         DataType = ftString
@@ -408,8 +525,8 @@ object Form2: TForm2
       'where  begsp <= :begsp AND'
       '           (endsp is NULL OR endsp >=  :begsp)  AND'
       '          chtype = '#39'SHOP'#39';')
-    Left = 264
-    Top = 112
+    Left = 896
+    Top = 344
     ParamData = <
       item
         DataType = ftString
@@ -427,8 +544,8 @@ object Form2: TForm2
       'where  begsp <= :begsp AND'
       '           (endsp is NULL OR endsp >=  :begsp)  AND'
       '          chtype = '#39'FUEL'#39';')
-    Left = 264
-    Top = 352
+    Left = 896
+    Top = 416
     ParamData = <
       item
         DataType = ftString
@@ -436,5 +553,245 @@ object Form2: TForm2
         ParamType = ptUnknown
         Value = '2013-12-01'
       end>
+  end
+  object HM_QCache: TmySQLQuery
+    Database = HM_CHDB
+    SQL.Strings = (
+      'SELECT *'
+      'FROM    cache_charges_monthly'
+      'WHERE chargesp = :chsp OR'
+      '               chargesp = :pchsp'
+      'ORDER BY chargesp;')
+    Left = 560
+    Top = 512
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'chsp'
+        ParamType = ptUnknown
+        Value = '2013-12-01'
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pchsp'
+        ParamType = ptUnknown
+      end>
+  end
+  object HM_CHQSUM_Bill: TmySQLQuery
+    Database = HM_CHDB
+    Active = True
+    SQL.Strings = (
+      'select sum(value) summary'
+      'from    charges '
+      'where  begsp <= :begsp AND'
+      '           (endsp is NULL OR endsp >=  :begsp) AND'
+      '          chtype = '#39'BILL'#39';')
+    Left = 816
+    Top = 344
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'begsp'
+        ParamType = ptUnknown
+        Value = '2013-12-01'
+      end>
+  end
+  object DSSUM_Bill: TDataSource
+    DataSet = HM_CHQSUM_Bill
+    Left = 816
+    Top = 376
+  end
+  object HM_CHQSUM_Shopping: TmySQLQuery
+    Database = HM_CHDB
+    Active = True
+    SQL.Strings = (
+      'select sum(value) summary'
+      'from    charges '
+      'where  begsp <= :begsp AND'
+      '           (endsp is NULL OR endsp >=  :begsp)  AND'
+      '          chtype = '#39'SHOP'#39';')
+    Left = 864
+    Top = 344
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'begsp'
+        ParamType = ptUnknown
+        Value = '2013-12-01'
+      end>
+  end
+  object DSSUM_Shopping: TDataSource
+    DataSet = HM_CHQSUM_Shopping
+    Left = 864
+    Top = 376
+  end
+  object HM_CHQSUM_RegularBill: TmySQLQuery
+    Database = HM_CHDB
+    Active = True
+    SQL.Strings = (
+      'select sum(value) summary'
+      'from    charges '
+      'where  begsp <= :begsp AND'
+      '          (endsp is NULL OR endsp >=  :begsp)  AND'
+      '          chtype = '#39'REGBILL'#39';')
+    Left = 816
+    Top = 416
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'begsp'
+        ParamType = ptUnknown
+        Value = '2013-12-01'
+      end>
+  end
+  object DSSUM_RegularBill: TDataSource
+    DataSet = HM_CHQSUM_RegularBill
+    Left = 816
+    Top = 448
+  end
+  object HM_CHQSUM_Fuel: TmySQLQuery
+    Database = HM_CHDB
+    Active = True
+    SQL.Strings = (
+      'select sum(value) summary'
+      'from    charges '
+      'where  begsp <= :begsp AND'
+      '           (endsp is NULL OR endsp >=  :begsp)  AND'
+      '          chtype = '#39'FUEL'#39';')
+    Left = 864
+    Top = 416
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'begsp'
+        ParamType = ptUnknown
+        Value = '2013-12-01'
+      end>
+  end
+  object DSSUM_Fuel: TDataSource
+    DataSet = HM_CHQSUM_Fuel
+    Left = 864
+    Top = 448
+  end
+  object HM_CHQSUM_Inbound: TmySQLQuery
+    AutoRefresh = True
+    Database = HM_CHDB
+    Active = True
+    SQL.Strings = (
+      'select sum(value) summary'
+      'from    charges '
+      'where  begsp <= :begsp AND'
+      '           (endsp is NULL OR endsp >=  :begsp)  AND'
+      '           isinbound > 0;')
+    Left = 168
+    Top = 424
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'begsp'
+        ParamType = ptUnknown
+        Value = '2013-12-01'
+      end>
+  end
+  object DSSUM_Inbound: TDataSource
+    DataSet = HM_CHQSUM_Inbound
+    Left = 200
+    Top = 424
+  end
+  object HM_CHQSUM_Outbund: TmySQLQuery
+    Database = HM_CHDB
+    Active = True
+    SQL.Strings = (
+      'select sum(value) summary'
+      'from    charges '
+      'where  begsp <= :begsp AND'
+      '           (endsp is NULL OR endsp >=  :begsp)  AND'
+      '           isinbound = 0 AND'
+      '          chtype != '#39'DIFF'#39';')
+    Left = 840
+    Top = 488
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'begsp'
+        ParamType = ptUnknown
+        Value = '2013-12-01'
+      end>
+  end
+  object DSSUM_Outbund: TDataSource
+    DataSet = HM_CHQSUM_Outbund
+    Left = 840
+    Top = 520
+  end
+  object HM_CHQDiff_PrevMonth: TmySQLQuery
+    Database = HM_CHDB
+    Active = True
+    SQL.Strings = (
+      'select * '
+      'from    charges '
+      'where  begsp <= :begsp AND'
+      '          (endsp is NULL OR endsp >=  :begsp)  AND'
+      '          chtype = '#39'DIFF'#39';')
+    Left = 784
+    Top = 16
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'begsp'
+        ParamType = ptUnknown
+        Value = '2013-11-01'
+      end>
+  end
+  object DSDiff_PrevMonth: TDataSource
+    DataSet = HM_CHQDiff_PrevMonth
+    Left = 784
+    Top = 48
+  end
+  object HM_CHQDiff_ActMonth: TmySQLQuery
+    AutoRefresh = True
+    Database = HM_CHDB
+    Active = True
+    SQL.Strings = (
+      'select * '
+      'from    charges '
+      'where  begsp <= :begsp AND'
+      
+        '          (endsp is NULL OR endsp >=  :begsp)  AND chtype = '#39'DIF' +
+        'F'#39';')
+    Left = 816
+    Top = 16
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'begsp'
+        ParamType = ptUnknown
+        Value = '2013-12-01'
+      end
+      item
+        DataType = ftString
+        Name = 'begsp'
+        ParamType = ptUnknown
+      end>
+  end
+  object DSDiff_ActMonth: TDataSource
+    DataSet = HM_CHQDiff_ActMonth
+    Left = 816
+    Top = 48
+  end
+  object HM_CHTDiff_ActMonth: TmySQLTable
+    Database = HM_CHDB
+    Active = True
+    IndexFieldNames = 'chid'
+    MasterFields = 'chid'
+    MasterSource = DSDiff_ActMonth
+    TableName = 'charges'
+    UpdateMode = upWhereChanged
+    Left = 848
+    Top = 16
+  end
+  object DSDiff_ActMonthE: TDataSource
+    DataSet = HM_CHTDiff_ActMonth
+    Left = 848
+    Top = 48
   end
 end

@@ -16,7 +16,7 @@ const AnsiString DbService::ctNames[ctCount + 1]=
    "REGBILL",
    "SHOP",
    "FUEL",
-   "PREVMONTH",
+   "DIFF",
    "PAYM",
 
    ""
@@ -37,4 +37,40 @@ AnsiString DbService::getFirstDayOfNextMonth(TDateTime date)
 
    return tmp.FormatString("yyyy-mm-01");
 }
+
+AnsiString DbService::getFirstDayOfPrevMonth(TDateTime date)
+{
+   TDateTime tmp= date;
+
+   AnsiString dMonth = tmp.FormatString("mm");
+
+   for (; tmp.FormatString("mm") == dMonth; tmp-= 1);
+
+   return tmp.FormatString("yyyy-mm-01");
+}
+
+TDateTime DbService::getDate_LastDayOfMonth(TDateTime date)
+{
+   TDateTime tmp= date;
+
+   AnsiString dMonth = tmp.FormatString("mm");
+
+   for (; tmp.FormatString("mm") == dMonth; tmp+= 1);
+
+   tmp-=1;
+   return tmp;
+}
+
+TDateTime DbService::getDate_FirstDayOfMonth(TDateTime date)
+{
+   TDateTime tmp= date;
+
+   AnsiString dMonth = tmp.FormatString("mm");
+
+   for (; tmp.FormatString("mm") == dMonth; tmp-= 1);
+
+   tmp+=1;
+   return tmp;
+}
+
 

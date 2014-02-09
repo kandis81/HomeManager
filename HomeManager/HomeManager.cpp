@@ -7,6 +7,9 @@ USEFORM("mainform.cpp", Form1);
 USEFORM("charges.cpp", Form2);
 USEFORM("chadd.cpp", Form3);
 USEUNIT("dbservice.cpp");
+USEUNIT("charges_service.cpp");
+USE("charges_service.h", File);
+USEUNIT("list.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

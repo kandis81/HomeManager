@@ -1,6 +1,6 @@
 object Form3: TForm3
-  Left = 531
-  Top = 211
+  Left = 558
+  Top = 152
   Width = 560
   Height = 398
   Caption = 'Bevételek / Kiadások kezelése'
