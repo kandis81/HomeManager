@@ -18,7 +18,7 @@
 #include "dbservice.h"
 
 //---------------------------------------------------------------------------
-class TForm3 : public TForm
+class TInOutBoundEdit : public TForm
 {
 __published:	// IDE-managed Components
         TDBGrid *DBGrid1;
@@ -60,12 +60,12 @@ __published:	// IDE-managed Components
       TDateTime      DefaultTo;
 
    public: // User declarations
-        __fastcall TForm3(TComponent* Owner);
+        __fastcall TInOutBoundEdit(TComponent* Owner);
         void init(Ds::ChargeTypes cht, TDateTime ref);
 protected:
         void refresh();
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TForm3 *Form3;
+extern PACKAGE TInOutBoundEdit *InOutBoundEdit;
 //---------------------------------------------------------------------------
 #endif

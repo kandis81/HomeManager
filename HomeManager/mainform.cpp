@@ -10,25 +10,25 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-TForm1 *Form1;
+TMainWindow *MainWindow;
 //---------------------------------------------------------------------------
-__fastcall TForm1::TForm1(TComponent* Owner)
+__fastcall TMainWindow::TMainWindow(TComponent* Owner)
         : TForm(Owner)
 {
    this->Caption= "Home Manager " VERSION;
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm1::Kilps1Click(TObject *Sender)
+void __fastcall TMainWindow::Kilps1Click(TObject *Sender)
 {
-   Form1->Close();
+   MainWindow->Close();
 }
 //---------------------------------------------------------------------------
 
 
 
-void __fastcall TForm1::Kiadsok1Click(TObject *Sender)
+void __fastcall TMainWindow::Kiadsok1Click(TObject *Sender)
 {
-   Form2->Visible=true;
+   InOutBoundMain->Visible=true;
 }
 //---------------------------------------------------------------------------
 

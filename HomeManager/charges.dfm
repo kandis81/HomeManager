@@ -1,6 +1,6 @@
-object Form2: TForm2
-  Left = 102
-  Top = 357
+object InOutBoundMain: TInOutBoundMain
+  Left = 406
+  Top = 237
   Width = 776
   Height = 614
   Caption = 'Bevétel / Kiadás nyilvántartás'
@@ -197,7 +197,7 @@ object Form2: TForm2
     Top = 16
     Width = 191
     Height = 154
-    Date = 41625
+    Date = 41625.4849462847
     TabOrder = 0
     OnClick = MonthCalendar1Click
   end

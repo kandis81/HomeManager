@@ -1,4 +1,4 @@
-object Form3: TForm3
+object InOutBoundEdit: TInOutBoundEdit
   Left = 558
   Top = 152
   Width = 560
@@ -242,7 +242,7 @@ object Form3: TForm3
     Visible = False
   end
   object HM_TCharges: TmySQLTable
-    Database = Form2.HM_CHDB
+    Database = InOutBoundMain.HM_CHDB
     Active = True
     FieldDefs = <
       item
@@ -305,7 +305,7 @@ object Form3: TForm3
   end
   object HM_QCharges: TmySQLQuery
     AutoRefresh = True
-    Database = Form2.HM_CHDB
+    Database = InOutBoundMain.HM_CHDB
     Active = True
     SQL.Strings = (
       'select'
@@ -340,7 +340,7 @@ object Form3: TForm3
     Top = 336
   end
   object HM_TChargesDelete: TmySQLTable
-    Database = Form2.HM_CHDB
+    Database = InOutBoundMain.HM_CHDB
     Active = True
     IndexFieldNames = 'chid'
     MasterFields = 'chid'

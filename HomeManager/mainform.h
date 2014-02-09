@@ -11,7 +11,7 @@
 #include <Db.hpp>
 #include <DBTables.hpp>
 //---------------------------------------------------------------------------
-class TForm1 : public TForm
+class TMainWindow : public TForm
 {
 __published:	// IDE-managed Components
         TMainMenu *MainMenu1;
@@ -24,9 +24,9 @@ __published:	// IDE-managed Components
 
 private:	// User declarations
 public:		// User declarations
-        __fastcall TForm1(TComponent* Owner);
+        __fastcall TMainWindow(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TForm1 *Form1;
+extern PACKAGE TMainWindow *MainWindow;
 //---------------------------------------------------------------------------
 #endif

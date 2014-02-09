@@ -13,7 +13,7 @@
     <RESDEPEN value="$(RESFILES) mainform.dfm charges.dfm chadd.dfm"/>
     <LIBFILES value=""/>
     <LIBRARIES value="MYSQLDACBCB5.lib"/>
-    <SPARELIBS value="Vcl50.lib Vcldb50.lib VCLBDE50.lib MYSQLDACBCB5.lib"/>
+    <SPARELIBS value="Vcl50.lib Vcldb50.lib VCLBDE50.lib MYSQLDACBCB5.lib Qrpt50.lib vclx50.lib"/>
     <PACKAGES value="Vcl50.bpi Vclx50.bpi bcbsmp50.bpi Vcldb50.bpi vclado50.bpi ibsmp50.bpi 
       VCLBDE50.bpi vcldbx50.bpi Qrpt50.bpi TeeUI50.bpi TeeDB50.bpi Tee50.bpi 
       Dss50.bpi TeeQR50.bpi VCLIB50.bpi Vclmid50.bpi vclie50.bpi Inetdb50.bpi 

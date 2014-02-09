@@ -10,29 +10,30 @@
 #pragma package(smart_init)
 #pragma link "mySQLDbTables"
 #pragma resource "*.dfm"
-TForm3 *Form3;
+TInOutBoundEdit *InOutBoundEdit;
 //---------------------------------------------------------------------------
-__fastcall TForm3::TForm3(TComponent* Owner)
+__fastcall TInOutBoundEdit::TInOutBoundEdit(TComponent* Owner)
         : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm3::Button1Click(TObject *Sender)
+void __fastcall TInOutBoundEdit::Button1Click(TObject *Sender)
 {
    this->HM_TCharges->Cancel();
-   Form2->FormActivate(this);
-   Form3->Close();
+   InOutBoundMain->FormActivate(this);
+   InOutBoundMain->refresh();
+   InOutBoundEdit->Close();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm3::CheckBox1Click(TObject *Sender)
+void __fastcall TInOutBoundEdit::CheckBox1Click(TObject *Sender)
 {
     this->DateTimePicker1->Enabled= this->CheckBox1->Checked;
 }
 //---------------------------------------------------------------------------
 
 
-void TForm3::init(Ds::ChargeTypes cht, TDateTime ref)
+void TInOutBoundEdit::init(Ds::ChargeTypes cht, TDateTime ref)
 {
    TDateTime tmp;
    AnsiString tmpStr;
@@ -102,7 +103,7 @@ void TForm3::init(Ds::ChargeTypes cht, TDateTime ref)
    this->refresh();
 }
 
-void TForm3::refresh()
+void TInOutBoundEdit::refresh()
 {
    this->HM_TCharges->Cancel();
    this->HM_TCharges->Append();
@@ -123,7 +124,7 @@ void TForm3::refresh()
    this->HM_QCharges->Refresh();
 }
 
-void __fastcall TForm3::Button2Click(TObject *Sender)
+void __fastcall TInOutBoundEdit::Button2Click(TObject *Sender)
 {
    // Bugfix: a melléütések végett ;)
    if (this->DBEdit2->Text.IsEmpty())
@@ -166,14 +167,14 @@ void __fastcall TForm3::Button2Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm3::DBGrid1CellClick(TColumn *Column)
+void __fastcall TInOutBoundEdit::DBGrid1CellClick(TColumn *Column)
 {
    this->Button3->Enabled= true;
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm3::Button3Click(TObject *Sender)
+void __fastcall TInOutBoundEdit::Button3Click(TObject *Sender)
 {
    TDateTime tmp;
 

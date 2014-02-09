@@ -3,9 +3,9 @@
 #include <vcl.h>
 #pragma hdrstop
 USERES("HomeManager.res");
-USEFORM("mainform.cpp", Form1);
-USEFORM("charges.cpp", Form2);
-USEFORM("chadd.cpp", Form3);
+USEFORM("mainform.cpp", MainWindow);
+USEFORM("charges.cpp", InOutBoundMain);
+USEFORM("chadd.cpp", InOutBoundEdit);
 USEUNIT("dbservice.cpp");
 USEUNIT("charges_service.cpp");
 USE("charges_service.h", File);
@@ -16,9 +16,9 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         try
         {
                  Application->Initialize();
-                 Application->CreateForm(__classid(TForm1), &Form1);
-                 Application->CreateForm(__classid(TForm2), &Form2);
-                 Application->CreateForm(__classid(TForm3), &Form3);
+                 Application->CreateForm(__classid(TMainWindow), &MainWindow);
+                 Application->CreateForm(__classid(TInOutBoundMain), &InOutBoundMain);
+                 Application->CreateForm(__classid(TInOutBoundEdit), &InOutBoundEdit);
                  Application->Run();
         }
         catch (Exception &exception)

@@ -9,9 +9,9 @@
 #pragma package(smart_init)
 #pragma link "mySQLDbTables"
 #pragma resource "*.dfm"
-TForm2 *Form2;
+TInOutBoundMain *InOutBoundMain;
 //---------------------------------------------------------------------------
-__fastcall TForm2::TForm2(TComponent* Owner)
+__fastcall TInOutBoundMain::TInOutBoundMain(TComponent* Owner)
         : TForm(Owner)
 {
 //   TDateTime tmp;
@@ -34,7 +34,7 @@ __fastcall TForm2::TForm2(TComponent* Owner)
 }
 //---------------------------------------------------------------------------
 
-void TForm2::refresh()
+void TInOutBoundMain::refresh()
 {
    AnsiString begsp= Ds::getFirstDayOfMonth(this->MonthCalendar1->Date),
               endsp= Ds::getFirstDayOfNextMonth(this->MonthCalendar1->Date);
@@ -102,55 +102,55 @@ void TForm2::refresh()
    }
 }
 
-void __fastcall TForm2::MonthCalendar1Click(TObject *Sender)
+void __fastcall TInOutBoundMain::MonthCalendar1Click(TObject *Sender)
 {
    refresh();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm2::Button5Click(TObject *Sender)
+void __fastcall TInOutBoundMain::Button5Click(TObject *Sender)
 {
-   Form2->Close();
+   InOutBoundMain->Close();
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm2::Button2Click(TObject *Sender)
+void __fastcall TInOutBoundMain::Button2Click(TObject *Sender)
 {
-   Form3->init(Ds::ctBill, this->MonthCalendar1->Date);
-   Form3->ShowModal();
+   InOutBoundEdit->init(Ds::ctBill, this->MonthCalendar1->Date);
+   InOutBoundEdit->ShowModal();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm2::Button1Click(TObject *Sender)
+void __fastcall TInOutBoundMain::Button1Click(TObject *Sender)
 {
-   Form3->init(Ds::ctRegBill, this->MonthCalendar1->Date);
-   Form3->ShowModal();
+   InOutBoundEdit->init(Ds::ctRegBill, this->MonthCalendar1->Date);
+   InOutBoundEdit->ShowModal();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm2::Button4Click(TObject *Sender)
+void __fastcall TInOutBoundMain::Button4Click(TObject *Sender)
 {
-   Form3->init(Ds::ctShop, this->MonthCalendar1->Date);
-   Form3->ShowModal();
+   InOutBoundEdit->init(Ds::ctShop, this->MonthCalendar1->Date);
+   InOutBoundEdit->ShowModal();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm2::Button3Click(TObject *Sender)
+void __fastcall TInOutBoundMain::Button3Click(TObject *Sender)
 {
-   Form3->init(Ds::ctFuel, this->MonthCalendar1->Date);
-   Form3->ShowModal();
+   InOutBoundEdit->init(Ds::ctFuel, this->MonthCalendar1->Date);
+   InOutBoundEdit->ShowModal();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm2::Button6Click(TObject *Sender)
+void __fastcall TInOutBoundMain::Button6Click(TObject *Sender)
 {
-   Form3->init(Ds::ctPayment, this->MonthCalendar1->Date);
-   Form3->ShowModal();
+   InOutBoundEdit->init(Ds::ctPayment, this->MonthCalendar1->Date);
+   InOutBoundEdit->ShowModal();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm2::FormActivate(TObject *Sender)
+void __fastcall TInOutBoundMain::FormActivate(TObject *Sender)
 {
    this->HM_CHQInbound->Refresh();
    this->HM_CHQBill->Refresh();
@@ -161,14 +161,14 @@ void __fastcall TForm2::FormActivate(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void TForm2::refresh(TmySQLQuery* q, AnsiString& begsp)
+void TInOutBoundMain::refresh(TmySQLQuery* q, AnsiString& begsp)
 {
    q->Active= false;
    q->ParamByName("begsp")->SetData(begsp.c_str());
    q->Active= true;
 }
 
-void TForm2::refreshDiff(AnsiString& begsp)
+void TInOutBoundMain::refreshDiff(AnsiString& begsp)
 {
    AnsiString prevMonth= Ds::getFirstDayOfPrevMonth(this->MonthCalendar1->Date);
 

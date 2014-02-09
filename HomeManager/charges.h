@@ -20,8 +20,9 @@
 #include "mySQLDbTables.hpp"
 #include "chadd.h"
 //---------------------------------------------------------------------------
-class TForm2 : public TForm
+class TInOutBoundMain : public TForm
 {
+   friend class TInOutBoundEdit;
 __published:	// IDE-managed Components
         TMonthCalendar *MonthCalendar1;
         TDBGrid *DBGrid1;
@@ -99,13 +100,13 @@ __published:	// IDE-managed Components
         void __fastcall FormActivate(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-        __fastcall TForm2(TComponent* Owner);
+        __fastcall TInOutBoundMain(TComponent* Owner);
 protected:
         virtual void refresh();
         virtual void refresh(TmySQLQuery* q, AnsiString& begsp);
         virtual void refreshDiff(AnsiString& begsp);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TForm2 *Form2;
+extern PACKAGE TInOutBoundMain *InOutBoundMain;
 //---------------------------------------------------------------------------
 #endif
